@@ -20,7 +20,7 @@ Response Body (Success):
 			"description": "Do number 1 - 10",
 			"priority": "High",
 			"due_date": "12 October 2024",
-			"finished": false
+			"status": "Doing"
 		},
 		{
 			"todo_list_id": "id",
@@ -28,7 +28,7 @@ Response Body (Success):
 			"description": "Do number 1 - 5",
 			"priority": "Med",
 			"due_date": "15 October 2024",
-			"finished": false
+			"status": "To Do"
 		},
 		{
 			"todo_list_id": "id",
@@ -36,7 +36,7 @@ Response Body (Success):
 			"description": "Do number 1 only",
 			"priority": "Low",
 			"due_date": "20 October 2024",
-			"finished": false
+			"status": "To Do"
 		},
 	]
 }
@@ -69,7 +69,7 @@ Response Body (Success):
 		"description": "Do number 1 - 10",
 		"priority": "High",
 		"due_date": "12 October 2024",
-		"finished": false
+		"status": "Doing"
 	},
 }
 ```
@@ -97,7 +97,7 @@ Request Body:
 	"description": "Do number 1 - 5",
 	"priority": "Med",
 	"due_date": "15 October 2024",
-	"finished": false
+	"status": "Finished"
 }
 ```
 
@@ -131,7 +131,7 @@ Request Body:
 	"description": "Do number 1 - 5",
 	"priority": "Med",
 	"due_date": "15 October 2024",
-	"finished": false
+	"status": "To Do"
 }
 ```
 
