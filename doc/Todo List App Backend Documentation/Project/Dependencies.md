@@ -5,4 +5,4 @@
 4. **@types**: Support typescript development
 5. **Nodemon**: For live update purpose
 6. **Winston**: Application logging
-7. 
+7. **Zod**: For data validation purpose

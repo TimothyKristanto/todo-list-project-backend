@@ -14,14 +14,17 @@ datasource db {
 }
 
 model User {
+  // table column
   id Int @id @default(autoincrement())
   username String @db.VarChar(100)
   email String @db.VarChar(150)
   password String @db.VarChar(100)
-  token String @db.VarChar(100)
+  token String? @db.VarChar(100)
 
+  // relation to many todos data
   todos Todo[]
 
+  // table name
   @@map("users")
 }
 
@@ -32,8 +35,10 @@ model Todo {
   priority String @db.VarChar(10)
   due_date String @db.VarChar(100)
   status String @db.VarChar(20)
+  user_id Int 
 
-  user User @relation(fields: [id], references: [id])
+  // relation to one user data using usere_id column as its foreign key with users table's id column as its value
+  user User @relation(fields: [user_id], references: [id])
 
   @@map("todos")
 }

@@ -11,4 +11,5 @@
 11. Setup `database.ts`
 12. Setup `logging.ts`
 13. Setup `app.ts`
-14. 
+14. Make folder model (for model class) and service (for bussiness logic)
+15. Make folder validation (for data validation)
