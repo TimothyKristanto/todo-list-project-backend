@@ -1,19 +1,24 @@
 import { User } from "@prisma/client"
 
-export interface UserRequest {
-	username: string
-	email: string
-	password: string
+export interface RegisterUserRequest {
+    username: string
+    email: string
+    password: string
 }
 
 export interface UserResponse {
-	token?: string
-	username: string
+    token?: string
+    username: string
+}
+
+export interface LoginUserRequest {
+    email: string
+    password: string
 }
 
 export function toUserResponse(prismaUser: User) {
-	return {
-		token: prismaUser.token ?? "",
-		username: prismaUser.username,
-	}
+    return {
+        token: prismaUser.token ?? "",
+        username: prismaUser.username,
+    }
 }

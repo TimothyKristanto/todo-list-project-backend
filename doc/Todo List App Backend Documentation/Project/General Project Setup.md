@@ -13,12 +13,5 @@
 13. Setup `app.ts`
 14. Make folder model (for model class) and service (for bussiness logic)
 15. Make folder validation (for data validation) and make folder controller (for controllers)
-16. Setup models and validations
-17. Setup user service
-18. Setup user controller
-19. Setup routers
-20. Register routers to express
-21. Create middleware folders
-22. Create error handler middleware
-23. Register error middleware to express
+
 24. 
