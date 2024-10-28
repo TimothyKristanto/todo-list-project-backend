@@ -34,3 +34,5 @@ npm-debug.log
 .env
 
 doc/Todo List App Backend Documentation/.obsidian
+
+app/dist

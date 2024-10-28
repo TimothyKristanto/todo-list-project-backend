@@ -1,10 +1,11 @@
 import { prismaClient } from "../application/database"
+import { logger } from "../application/logging"
 import { ResponseError } from "../error/response-error"
 import {
-	toUserResponse,
-	RegisterUserRequest,
-	UserResponse,
-	LoginUserRequest,
+    toUserResponse,
+    RegisterUserRequest,
+    UserResponse,
+    LoginUserRequest,
 } from "../model/user-model"
 import { UserValidation } from "../validation/user-validation"
 import { Validation } from "../validation/validation"
@@ -12,76 +13,76 @@ import bcrypt from "bcrypt"
 import { v4 as uuid } from "uuid"
 
 export class UserService {
-	static async register(request: RegisterUserRequest): Promise<UserResponse> {
-		// validate request
-		const registerRequest = Validation.validate(
-			UserValidation.REGISTER,
-			request
-		)
+    static async register(request: RegisterUserRequest): Promise<UserResponse> {
+        // validate request
+        const registerRequest = Validation.validate(
+            UserValidation.REGISTER,
+            request
+        )
 
-		const email = await prismaClient.user.findFirst({
-			where: {
-				email: registerRequest.email,
-			},
-		})
+        const email = await prismaClient.user.findFirst({
+            where: {
+                email: registerRequest.email,
+            },
+        })
 
-		if (email) {
-			throw new ResponseError(400, "Email already exists!")
-		}
+        if (email) {
+            throw new ResponseError(400, "Email already exists!")
+        }
 
-		// encrypt password
-		registerRequest.password = await bcrypt.hash(
-			registerRequest.password,
-			10
-		)
+        // encrypt password
+        registerRequest.password = await bcrypt.hash(
+            registerRequest.password,
+            10
+        )
 
-		// add user to db
-		const user = await prismaClient.user.create({
-			data: {
-				username: registerRequest.username,
-				email: registerRequest.email,
-				password: registerRequest.password,
-				token: uuid(),
-			},
-		})
+        // add user to db
+        const user = await prismaClient.user.create({
+            data: {
+                username: registerRequest.username,
+                email: registerRequest.email,
+                password: registerRequest.password,
+                token: uuid(),
+            },
+        })
 
-		// convert user to UserResponse and return it
-		return toUserResponse(user)
-	}
+        // convert user to UserResponse and return it
+        return toUserResponse(user)
+    }
 
-	static async login(request: LoginUserRequest): Promise<UserResponse> {
-		const loginRequest = Validation.validate(UserValidation.LOGIN, request)
+    static async login(request: LoginUserRequest): Promise<UserResponse> {
+        const loginRequest = Validation.validate(UserValidation.LOGIN, request)
 
-		let user = await prismaClient.user.findFirst({
-			where: {
-				email: loginRequest.email,
-			},
-		})
+        let user = await prismaClient.user.findFirst({
+            where: {
+                email: loginRequest.email,
+            },
+        })
 
-		if (!user) {
-			throw new ResponseError(400, "Invalid email or password!")
-		}
+        if (!user) {
+            throw new ResponseError(400, "Invalid email or password!")
+        }
 
-		const passwordIsValid = await bcrypt.compare(
-			loginRequest.password,
-			user.password
-		)
+        const passwordIsValid = await bcrypt.compare(
+            loginRequest.password,
+            user.password
+        )
 
-		if (!passwordIsValid) {
-			throw new ResponseError(400, "Invalid email or password!")
-		}
+        if (!passwordIsValid) {
+            throw new ResponseError(400, "Invalid email or password!")
+        }
 
-		user = await prismaClient.user.update({
-			where: {
-				email: loginRequest.email,
-			},
-			data: {
-				token: uuid(),
-			},
-		})
+        user = await prismaClient.user.update({
+            where: {
+                id: user.id,
+            },
+            data: {
+                token: uuid(),
+            },
+        })
 
-		const response = toUserResponse(user)
+        const response = toUserResponse(user)
 
-		return response
-	}
+        return response
+    }
 }

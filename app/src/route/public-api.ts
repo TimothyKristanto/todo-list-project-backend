@@ -1,3 +1,5 @@
+// this router can only be accessed by unauthenticated people
+
 import express from "express"
 import { UserController } from "../controller/user-controller"
 
