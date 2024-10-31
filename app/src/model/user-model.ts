@@ -16,7 +16,7 @@ export interface LoginUserRequest {
     password: string
 }
 
-export function toUserResponse(prismaUser: User) {
+export function toUserResponse(prismaUser: User): UserResponse {
     return {
         token: prismaUser.token ?? "",
         username: prismaUser.username,
