@@ -7,5 +7,5 @@ export const apiRouter = express.Router()
 apiRouter.use(authMiddleware)
 
 apiRouter.post("/api/logout", UserController.logout)
-apiRouter.get("api/todo-list", TodoController.getAllTodos)
-apiRouter.post("api/todo-list", TodoController.createTodo)
+apiRouter.get("/api/todo-list", TodoController.getAllTodos)
+apiRouter.post("/api/todo-list", TodoController.createTodo)
