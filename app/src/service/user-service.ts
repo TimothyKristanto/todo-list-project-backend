@@ -87,7 +87,7 @@ export class UserService {
         return response
     }
 
-    static async logout(user: User): Promise<UserResponse> {
+    static async logout(user: User): Promise<String> {
         const result = await prismaClient.user.update({
             where: {
                 id: user.id,
@@ -97,6 +97,6 @@ export class UserService {
             },
         })
 
-        return toUserResponse(result)
+        return "Logout Successful!"
     }
 }

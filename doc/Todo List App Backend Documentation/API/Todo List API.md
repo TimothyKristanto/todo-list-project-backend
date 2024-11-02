@@ -64,7 +64,7 @@ Response Body (Success):
 ```json
 {
 	"data": {
-		"todo_list_id": "id",
+		"id": "id",
 		"title": "Do Math Homework",
 		"description": "Do number 1 - 10",
 		"priority": "High",
@@ -93,6 +93,7 @@ X-API-TOKEN: token
 Request Body: 
 ```json
 {
+	"id": "id"
 	"title": "Do Physic Homework",
 	"description": "Do number 1 - 5",
 	"priority": "Med",
@@ -138,7 +139,7 @@ Request Body:
 Response Body (Success):
 ```json
 {
-	"data": "Data created successful!"
+	"data": "Data created successfully!"
 }
 ```
 
