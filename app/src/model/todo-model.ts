@@ -9,7 +9,7 @@ export interface TodoResponse {
     status: string
 }
 
-export function toTodoResponse(prismaTodo: Todo[]): TodoResponse[] {
+export function toTodoResponseList(prismaTodo: Todo[]): TodoResponse[] {
     const result = prismaTodo.map((todo) => {
         return {
             id: todo.id,
@@ -24,7 +24,27 @@ export function toTodoResponse(prismaTodo: Todo[]): TodoResponse[] {
     return result
 }
 
-export interface TodoRequest {
+export function toTodoResponse(prismaTodo: Todo): TodoResponse {
+    return {
+        id: prismaTodo.id,
+        title: prismaTodo.title,
+        description: prismaTodo.description,
+        priority: prismaTodo.priority,
+        due_date: prismaTodo.due_date,
+        status: prismaTodo.status,
+    }
+}
+
+export interface TodoCreateRequest {
+    title: string
+    description: string
+    priority: string
+    due_date: string
+    status: string
+}
+
+export interface TodoUpdateRequest {
+    id: number
     title: string
     description: string
     priority: string
