@@ -14,5 +14,6 @@
 14. Make folder model (for model class) and service (for bussiness logic)
 15. Make folder validation (for data validation) and make folder controller (for controllers)
 16. Read [[Authentication Functionality Setup]]
-17. Open your package.json file
-18. Type in `"build": "tsc"` and `"start": "node dist/main.js"`inside the `scripts` 
+17. Read [[Todo List Functionality Setup]]
+18. Open your package.json file
+19. Type in `"build": "tsc"` and `"start": "node dist/main.js"`inside the `scripts` 

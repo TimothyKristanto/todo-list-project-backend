@@ -1,4 +1,4 @@
 
-1. Setup model and service
-2. Setup controller and api route
-3. 
+1. Setup model and validation
+2. Setup controller and service
+3. Register controller to api route
