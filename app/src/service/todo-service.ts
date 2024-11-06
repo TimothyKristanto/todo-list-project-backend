@@ -9,8 +9,8 @@ import {
 import { prismaClient } from "../application/database"
 import { Validation } from "../validation/validation"
 import { TodoValidation } from "../validation/todo-validation"
-import { Request } from "express"
 import { ResponseError } from "../error/response-error"
+import { logger } from "../application/logging"
 
 export class TodoService {
     static async getAllTodo(user: User): Promise<TodoResponse[]> {
@@ -76,7 +76,7 @@ export class TodoService {
 
         await this.checkTodoIsEmpty(user.id, todoValidation.id)
 
-        const todoUpdate = prismaClient.todo.update({
+        const todoUpdate = await prismaClient.todo.update({
             where: {
                 id: todoValidation.id,
                 user_id: user.id,
@@ -84,13 +84,15 @@ export class TodoService {
             data: todoValidation,
         })
 
+        logger.info("UPDATE RESULT: " + todoUpdate)
+
         return "Data update was successful!"
     }
 
     static async deleteTodo(user: User, todo_id: number): Promise<String> {
         await this.checkTodoIsEmpty(user.id, todo_id)
 
-        const todoDelete = prismaClient.todo.delete({
+        const todoDelete = await prismaClient.todo.delete({
             where: {
                 user_id: user.id,
                 id: todo_id,

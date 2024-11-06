@@ -38,7 +38,7 @@ model Todo {
   user_id Int 
 
   // relation to one user data using usere_id column as its foreign key with users table's id column as its value
-  user User @relation(fields: [user_id], references: [id])
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@map("todos")
 }
