@@ -17,4 +17,4 @@
 17. Read [[Authentication Functionality Setup]]
 18. Read [[Todo List Functionality Setup]]
 19. Open your package.json file
-20. Type in `"build": "tsc"` and `"start": "node dist/main.js"`inside the `scripts` 
+20. Type in `"start": "tsc && node dist/main.js"`inside the `scripts` 
