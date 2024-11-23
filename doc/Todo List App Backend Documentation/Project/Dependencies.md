@@ -7,3 +7,4 @@
 6. **Winston**: Application logging
 7. **Zod**: For data validation purpose
 8. **Bcrypt**: For data encryption purpose
+9. **ts-node**: To compile and run typescript codes directly without running the build command
