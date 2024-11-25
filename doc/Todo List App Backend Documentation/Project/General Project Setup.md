@@ -7,14 +7,14 @@
 7. `npx prisma init`
 8. Postgre SQL connection link setting in .env file and schema.prisma file
 9. Make tables in prisma
-10. Migrate tabel to database `npx prisma migrate dev`
+10. Migrate tabel to database
 11. Setup `database.ts`
 12. Setup `logging.ts`
 13. Setup `app.ts`
-14. Setup `main.ts`
-15. Make folder model (for model class) and service (for bussiness logic)
-16. Make folder validation (for data validation) and make folder controller (for controllers)
-17. Read [[Authentication Functionality Setup]]
-18. Read [[Todo List Functionality Setup]]
-19. Open your package.json file
-20. Type in `"start": "tsc && node dist/main.js"`inside the `scripts` 
+14. Make folder model (for model class) and service (for bussiness logic)
+15. Make folder validation (for data validation) and make folder controller (for controllers)
+16. Read [[Authentication Functionality Setup]]
+17. Read [[Todo List Functionality Setup]]
+18. Open your package.json file
+19. Add `"build": "tsc"` and `"start": "node dist/main.js"`as new `scripts` values
+20. Add `"dev": "nodemon src/main.ts"` as a new `scripts` value
