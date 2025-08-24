@@ -1,5 +1,5 @@
 import { Response, NextFunction } from "express"
-import { prismaClient } from "../application/database"
+import { prismaClient } from "../utils/database-util"
 import { UserRequest } from "../type/user-request"
 
 export const authMiddleware = async (

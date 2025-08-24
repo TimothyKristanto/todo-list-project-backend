@@ -1,6 +1,5 @@
 import { User } from "@prisma/client"
-import { prismaClient } from "../application/database"
-import { logger } from "../application/logging"
+import { prismaClient } from "../utils/database-util"
 import { ResponseError } from "../error/response-error"
 import {
     toUserResponse,

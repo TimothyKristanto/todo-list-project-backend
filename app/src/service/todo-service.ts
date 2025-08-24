@@ -6,11 +6,10 @@ import {
     toTodoResponse,
     toTodoResponseList,
 } from "../model/todo-model"
-import { prismaClient } from "../application/database"
+import { prismaClient } from "../utils/database-util"
 import { Validation } from "../validation/validation"
 import { TodoValidation } from "../validation/todo-validation"
 import { ResponseError } from "../error/response-error"
-import { logger } from "../application/logging"
 
 export class TodoService {
     static async getAllTodo(user: User): Promise<TodoResponse[]> {
@@ -83,8 +82,6 @@ export class TodoService {
             },
             data: todoValidation,
         })
-
-        logger.info("UPDATE RESULT: " + todoUpdate)
 
         return "Data update was successful!"
     }
