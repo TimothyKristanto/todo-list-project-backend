@@ -1,4 +1,5 @@
 import { User } from "@prisma/client"
+import { generateToken } from "../utils/jwt-util"
 
 export interface RegisterUserRequest {
     username: string
@@ -8,7 +9,12 @@ export interface RegisterUserRequest {
 
 export interface UserResponse {
     token?: string
+}
+
+export interface UserJWTPayload {
+    id: number
     username: string
+    email: string
 }
 
 export interface LoginUserRequest {
@@ -16,9 +22,19 @@ export interface LoginUserRequest {
     password: string
 }
 
-export function toUserResponse(prismaUser: User): UserResponse {
+export function toUserResponse(
+    id: number,
+    username: string,
+    email: string
+): UserResponse {
     return {
-        token: prismaUser.token ?? "",
-        username: prismaUser.username,
+        token: generateToken(
+            {
+                id: id,
+                username: username,
+                email: email,
+            },
+            "1h"
+        ),
     }
 }

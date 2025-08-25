@@ -1,16 +1,14 @@
-import { User } from "@prisma/client"
 import { prismaClient } from "../utils/database-util"
 import { ResponseError } from "../error/response-error"
 import {
-    toUserResponse,
     RegisterUserRequest,
     UserResponse,
     LoginUserRequest,
+    toUserResponse,
 } from "../model/user-model"
 import { UserValidation } from "../validation/user-validation"
 import { Validation } from "../validation/validation"
 import bcrypt from "bcrypt"
-import { v4 as uuid } from "uuid"
 
 export class UserService {
     static async register(request: RegisterUserRequest): Promise<UserResponse> {
@@ -42,12 +40,11 @@ export class UserService {
                 username: registerRequest.username,
                 email: registerRequest.email,
                 password: registerRequest.password,
-                token: uuid(),
             },
         })
 
         // convert user to UserResponse and return it
-        return toUserResponse(user)
+        return toUserResponse(user.id, user.username, user.email)
     }
 
     static async login(request: LoginUserRequest): Promise<UserResponse> {
@@ -72,30 +69,6 @@ export class UserService {
             throw new ResponseError(400, "Invalid email or password!")
         }
 
-        user = await prismaClient.user.update({
-            where: {
-                id: user.id,
-            },
-            data: {
-                token: uuid(),
-            },
-        })
-
-        const response = toUserResponse(user)
-
-        return response
-    }
-
-    static async logout(user: User): Promise<string> {
-        const result = await prismaClient.user.update({
-            where: {
-                id: user.id,
-            },
-            data: {
-                token: null,
-            },
-        })
-
-        return "Logout Successful!"
+        return toUserResponse(user.id, user.username, user.email)
     }
 }
